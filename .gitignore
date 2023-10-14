@@ -1,0 +1,5 @@
+.env
+example_nearby.json
+example_departures.json
+**/__pycache__/
+.vscode
