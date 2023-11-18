@@ -41,6 +41,17 @@ class MobiliteitLu:
         return response.json()
     
     def get_departure_board(self, id: str, date: str = None, time: str = None, duration: int = 60, lang='eng'):
+        """
+        Fetches the departure board information for a specific station/stop.
+        
+        :param id: Specifies the station/stop ID for which the departures shall be retrieved.
+        :param date: Sets the start date for which the departures shall be retrieved. Format: 'YYYY-MM-DD'; defaults to None.
+        :param time: Sets the start time for which the departures shall be retrieved. Format: 'hh:mm'; defaults to None.
+        :param duration: Sets the interval size in minutes for departures retrieval. Range: 0 to 1439; defaults to 60.
+        :param lang: Language of the journey planner; defaults to 'eng'.
+        :return: Response from the API as a JSON object.
+        """
+
         params = {
             'accessId': self.access_id,
             'id': id,
@@ -49,6 +60,7 @@ class MobiliteitLu:
             'duration': duration,
             'lang': lang,
             'format': 'json',
+            'rtMode': 'FULL'
         }
 
         response = requests.get(self.BASE_URL_DEPARTURE_BOARD, params=params)
